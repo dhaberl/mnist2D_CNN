@@ -16,3 +16,7 @@ img_0; 2 \
 . \
 . \
 .
+
+## References
+The notation/organization of the code is inspired by the blog post: \
+https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
