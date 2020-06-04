@@ -9,7 +9,11 @@ import plotly.graph_objs as graphs
 import math
 import random
 import matplotlib.pyplot as plt
+from DataGenerator import DataGenerator
 
+# Silent warning of Scipy.ndimage.zoom -> warning has no functional impact on the code
+import warnings
+warnings.filterwarnings('ignore', '.*output shape of zoom.*')
 
 def get_dims(data_dir):
     """Get dimensions from a npy file in the given data directory data_dir."""
@@ -169,12 +173,12 @@ def create_2DCNN_model(input_shape):
 def main():
 
     # Data directory
-    data_dir = "data/"
+    data_dir = "C:\\Users\\david.haberl\\PycharmProjects\\ProjectThesis2\\Data\\Mnist2D\\"
 
     # Define hyperparameters
-    num_epochs = 100
+    num_epochs = 5
     batch_size = 32
-    train_ratio = 0.8
+    train_ratio = 0.7
     validation_ratio = 0.15
     test_ratio = 0.15
 
@@ -193,25 +197,43 @@ def main():
                            test_ratio=test_ratio)
 
     # Load data
-    train_images, train_labels = load_data(partition["train"], labels, data_dir)
-    validation_images, validation_labels = load_data(partition["validation"], labels, data_dir)
-    test_images, test_labels = load_data(partition["test"], labels, data_dir)
+    da_parameters = {"width_shift": 5.,
+                     "height_shift": 5.,
+                     "rotation_range": 15.,
+                     "horizontal_flip": 0.5,
+                     "vertical_flip": 0.5,
+                     "min_zoom": 0.7,
+                     "max_zoom": 1.1,
+                     "random_crop_size": 0.85,
+                     "random_crop_rate": 1.,
+                     "center_crop_size": 0.85,
+                     "center_crop_rate": 1.,
+                     "gaussian_filter_std": 1.,
+                     "gaussian_filter_rate": 1.
+                     }
+
+    training_images = DataGenerator(data_dir=data_dir, list_ids=partition["train"], labels=labels,
+                                    batch_size=batch_size, dim=dims[0:2], n_channels=1, n_classes=10, shuffle=True,
+                                    **da_parameters)
+
+    validation_images = DataGenerator(data_dir=data_dir, list_ids=partition["validation"], labels=labels,
+                                      batch_size=batch_size, dim=dims[0:2], n_channels=1, n_classes=10, shuffle=True,
+                                      **da_parameters)
+
+    test_images = DataGenerator(data_dir=data_dir, list_ids=partition["test"], labels=labels,
+                                batch_size=batch_size, dim=dims[0:2], n_channels=1, n_classes=10, shuffle=True)
 
     # Create/Compile CNN model
     model = create_2DCNN_model(dims)
 
     # Train model
-    train_summary = model.fit(x=train_images,
-                              y=train_labels,
-                              validation_data=(validation_images, validation_labels),
-                              batch_size=batch_size,
-                              epochs=num_epochs
-                              )
+    train_summary = model.fit_generator(generator=training_images, validation_data=validation_images,
+                                        use_multiprocessing=True, workers=6, epochs=num_epochs)
 
     print(train_summary.history)
 
     # Evaluate fitted model using test data
-    test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=1)
+    test_loss, test_acc = model.evaluate_generator(generator=test_images, use_multiprocessing=True, workers=6)
     print("\nTest ACC:", round(test_acc, 3))
 
 # =============================================================================
@@ -248,6 +270,17 @@ def main():
 
     # Print model summary including parameters and architecture
     # print(model.summary())
+
+    # Check output of DataGenerator
+    # array = training_images.__getitem__(0)
+
+    # Create a grid of 3x3 images
+    # for i in range(0, 9):
+    #     plt.subplot(330 + 1 + i)
+    #     plt.imshow(array[0][0:9][i][:, :, 0])
+
+    # Show
+    # plt.show()
 
 # =============================================================================
 
