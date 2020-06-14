@@ -1,7 +1,10 @@
-# mnist2D_CNN
- Classification CNN for 2D MNIST data
+# Convolutional Neural Network in Keras/Tensorflow
+ Classification CNN for 2D MNIST data.
 
-## Structure
+## Prerequisites
+
+## Getting Started
+### Dataset
 folder/
 - main.py
 - data/
@@ -17,6 +20,6 @@ img_0; 2 \
 . \
 .
 
-## References
+## Acknowledgments
 The notation/organization of the code is inspired by the blog post: \
 https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
