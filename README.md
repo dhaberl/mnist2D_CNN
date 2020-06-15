@@ -15,7 +15,7 @@
 - Install dependencies (see env_mnist2d_cnn.yml) and set up your environment
 
 ### Dataset
-A subset of 42 000 grey-scale images of the original MNIST database was used. Each image contains 28x28 pixels, for a total of 784 pixels. Each pixel has a single pixel-value associated with it, indicating the brightness (low values) or darkness (high values) ofthat pixel. This pixel-value is an integer between 0 (white) and 255 (black). 
+A subset of 42 000 grey-scale images of the original MNIST database was used. Each image contains 28x28 pixels, for a total of 784 pixels. Each pixel has a single pixel-value associated with it, indicating the brightness (low values) or darkness (high values) of that pixel. This pixel-value is an integer between 0 (white) and 255 (black). 
 
 The images are stored as npy-files. The dataset also contains a csv-file with the ID and the corresponding ground truth label.
 
