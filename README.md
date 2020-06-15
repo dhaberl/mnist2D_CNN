@@ -1,5 +1,5 @@
 # Convolutional Neural Network in Keras/Tensorflow
- Classification CNN for 2D MNIST data with a custom Data Generator allowing real-time data feeding and data augmentation.
+ Classification CNN for 2D MNIST data.
 
 ## Prerequisites
 - Linux or Windows 
@@ -9,8 +9,8 @@
 
 ## Getting Started
 ### Branches
-- master: standard implementation of a CNN
-- DataGenerator2D: implementation of a CNN using a custom data generator and optional data augmentation.
+- master: standard implementation of the CNN
+- DataGenerator2D: implementation of the CNN using a custom data generator and data augmentation.
 
 ### Installation
 - Clone or download this repo
@@ -55,49 +55,5 @@ Run:
 python main.py
 ```
 
-### Data Generator
-The Data Generator generates the dataset in batches on multiple cores for real-time data feeding to the machine learning model. 
-
-The generator can be used by importing it in the main file:
-
-```
-from DataGenerator import DataGenerator
-```
-
-Input parameters are:
-
-- data_dir: path to the data directory (string)
-- list_ids: list of IDs as shown above (list)
-- labels: list of labels as shown above (list)
-- batch_size: number of samples that will be propagated through the network (integer)
-- dim: dimensions of the data (tuple with intergers). E.g., image with 28x28 pixels => (28, 28)
-- n_channels: number of channels (integer). E.g., RGB = 3 channels
-- n_classes: number of classes (integer)
-- shuffle: whether to shuffle at generation or not (boolean) 
-- **da_parameters
-
-### Data augmentation
-
-The Data Generator also allows real-time data augmentation. See [PDF].
-
-For example:
-
-```
-da_parameters = {"width_shift": 5.,
-                 "height_shift": 5.,
-                 "rotation_range": 15.,
-                 "horizontal_flip": 0.5,
-                 "vertical_flip": 0.5,
-                 "min_zoom": 0.7,
-                 "max_zoom": 1.1,
-                 "random_crop_size": 0.85,
-                 "random_crop_rate": 1.,
-                 "center_crop_size": 0.85,
-                 "center_crop_rate": 1.,
-                 "gaussian_filter_std": 1.,
-                 "gaussian_filter_rate": 1.
-                 }
-```
-
 ## Acknowledgments
-- The code of the Data Generator is based on: https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
+- The organization of the dataset is based on: https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
