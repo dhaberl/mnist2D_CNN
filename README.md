@@ -10,15 +10,16 @@
 ## Getting Started
 ### Branches
 
-
 ### Installation
 - Clone or download this repo
 - Install dependencies (see env_mnist2d_cnn.yml) and set up your environment
 
 ### Dataset
-Download the dataset (here: 2D MNIST as npy-files) from: [LINK] 
+A subset of 42 000 grey-scale images of the original MNIST database was used. Each image contains 28x28 pixels, for a total of 784 pixels. Each pixel has a single pixel-value associated with it, indicating the brightness (low values) or darkness (high values) ofthat pixel. This pixel-value is an integer between 0 (white) and 255 (black). 
 
-or use your own (shape of npy-files: 28x28x1). 
+The images are stored as npy-files. The dataset also contains a csv-file with the ID and the corresponding ground truth label.
+
+Download the dataset from: [LINK] 
 
 folder/
 - main.py
@@ -32,34 +33,52 @@ where labels.csv contains for instance:
 
 ID; Label \
 img_0; 2 \
-. \
-. \
-.
+img_1; 7 \
+...
+
+### Train and test
+Set data directory and define hyperparameters, e.g.:
+
+```
+- data_dir = 'data/'
+- num_epochs = 50
+- batch_size = 32
+- train_ratio = 0.7
+- validation_ratio = 0.15
+- test_ratio = 0.15
+```
+
+Run:
+```
+python main.py
+```
 
 ### Data Generator and Data Augmentation
 The Data Generator generates the dataset in batches on multiple cores for real-time data feeding to the machine learning model. 
 
-It can be used by importing it in the main file:
+The generator can be used by importing it in the main file:
 
 ```
 from DataGenerator import DataGenerator
 ```
 
-and takes as an input:
+Input parameters are:
 
-- data_dir: path to the data directory
-- list_ids: list of IDs as shown above
-- labels: list of labels as shown above
-- batch_size 
-- dim: dimensions of the data (28x28)
-- n_channels: number of channels
-- n_classes: number of classes
+- data_dir: path to the data directory (string)
+- list_ids: list of IDs as shown above (list)
+- labels: list of labels as shown above (list)
+- batch_size: number of samples that will be propagated through the network (integer)
+- dim: dimensions of the data (tuple with intergers). E.g., image with 28x28 pixels => (28, 28)
+- n_channels: number of channels (integer). E.g., RGB = 3 channels
+- n_classes: number of classes (integer)
 - shuffle: whether to shuffle at generation or not (boolean) 
 - **da_parameters
 
 Data augmentation:
 
-The Data Generator also allows real-time data augmentation.
+The Data Generator also allows real-time data augmentation. See [PDF].
+
+For example:
 
 ```
 da_parameters = {"width_shift": 5.,
@@ -76,22 +95,6 @@ da_parameters = {"width_shift": 5.,
                  "gaussian_filter_std": 1.,
                  "gaussian_filter_rate": 1.
                  }
-```
-
-### Train and test
-Set data directory and define hyperparameters, e.g.:
-```
-- data_dir = 'data/'
-- num_epochs = 50
-- batch_size = 32
-- train_ratio = 0.7
-- validation_ratio = 0.15
-- test_ratio = 0.15
-```
-
-Run:
-```
-python main.py
 ```
 
 ## Acknowledgments
