@@ -1,5 +1,5 @@
 # Convolutional Neural Network in Keras/Tensorflow
- Classification CNN for 2D MNIST data.
+ Classification CNN for 2D MNIST data with a custom Data Generator allowing real-time data feeding and data augmentation.
 
 ## Prerequisites
 - Linux or Windows 
