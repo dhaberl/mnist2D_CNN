@@ -56,4 +56,4 @@ python main.py
 ```
 
 ## Acknowledgments
-- The organization of the dataset is based on: https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
+- [1] The organization of the dataset is based on: https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly
