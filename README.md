@@ -9,6 +9,8 @@
 
 ## Getting Started
 ### Branches
+- master: standard implementation of a CNN
+- DataGenerator2D: implementation of a CNN using a custom data generator and optional data augmentation.
 
 ### Installation
 - Clone or download this repo
