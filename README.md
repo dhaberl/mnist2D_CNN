@@ -53,7 +53,7 @@ Run:
 python main.py
 ```
 
-### Data Generator and Data Augmentation
+### Data Generator
 The Data Generator generates the dataset in batches on multiple cores for real-time data feeding to the machine learning model. 
 
 The generator can be used by importing it in the main file:
@@ -74,7 +74,7 @@ Input parameters are:
 - shuffle: whether to shuffle at generation or not (boolean) 
 - **da_parameters
 
-Data augmentation:
+### Data augmentation
 
 The Data Generator also allows real-time data augmentation. See [PDF].
 
