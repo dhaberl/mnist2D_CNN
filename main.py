@@ -205,8 +205,7 @@ def main():
                               y=train_labels,
                               validation_data=(validation_images, validation_labels),
                               batch_size=batch_size,
-                              epochs=num_epochs
-                              )
+                              epochs=num_epochs)
 
     print(train_summary.history)
 
