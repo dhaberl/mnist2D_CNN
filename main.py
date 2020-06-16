@@ -128,8 +128,8 @@ def plot_train_val_loss(losses, show=True):
                            yaxis={"title": "Loss"})
 
     fig = graphs.Figure(data=[trace_train, trace_test], layout=layout)
-    ply.plot(fig, image_filename="plotly_train_val_acc.html", auto_open=show)
-    # print("Plot saved as plotly_train_val_acc.html")
+    ply.plot(fig, image_filename="plotly_train_val_loss.html", auto_open=show)
+    # print("Plot saved as plotly_train_val_loss.html")
 
 
 def predict(samples, model, show=True):
