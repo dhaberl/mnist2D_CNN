@@ -105,7 +105,7 @@ def plot_train_val_acc(accs, show=True):
 
 
 def plot_train_val_loss(losses, show=True):
-    """Plot training vs. testing accuracy over all epochs."""
+    """Plot training vs. testing loss over all epochs."""
     x = list(losses.keys())
     y_train = [i[0] for i in losses.values()]
     y_test = [i[1] for i in losses.values()]
