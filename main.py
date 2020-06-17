@@ -25,7 +25,7 @@ def get_dims(data_dir):
 
 
 def load_data(ids, labels, data_dir):
-    """Returns 2D image arrays and labels of given IDs."""
+    """Returns 2D image arrays and labels of given IDs. Note: This function is replaced by the Data Generator"""
     num_samples = len(ids)
     dims = get_dims(data_dir)
     X = np.empty((num_samples, dims[0], dims[1], dims[2]))   # Softcode dimensions
@@ -134,7 +134,7 @@ def plot_train_val_loss(losses, show=True):
 
 def predict(samples, model, show=True):
     """Return class predicted by model for the given samples."""
-    predictions = model.predict(samples)
+    predictions = model.predict_generator(generator=samples, use_multiprocessing=False, workers=6)
     if show:
         print("-------")
         for prediction in predictions:
@@ -256,17 +256,13 @@ def main():
     # plot_train_val_acc(accs)
     # plot_train_val_loss(losses)
 
-    # Plot incorrectly predicted samples
+    # Plot incorrectly predicted samples TODO: testing required when using Data Generator
     # plot_incorrects(model, test_images, test_labels, num_to_show=5)
 
-    # Prediction of query sample
+    # Prediction of query sample TODO: testing required when using Data Generator
     # predicted = predict(np.array([test_images[0]]), model, show=True)
     # print("Predicted label:", np.argmax(predicted))
     # print("True label:", np.argmax(test_labels[0]))
-
-    # Plot an image
-    # plt.imshow(test_images[0][:, :, 0])
-    # plt.show()
 
     # Print model summary including parameters and architecture
     # print(model.summary())
@@ -277,9 +273,11 @@ def main():
     # Create a grid of 3x3 images
     # for i in range(0, 9):
     #     plt.subplot(330 + 1 + i)
-    #     plt.imshow(array[0][0:9][i][:, :, 0])
+    #     plt.imshow(training_images.__getitem__(0)[0][0:9][i][:, :, 0])
+    # plt.show()
 
-    # Show
+    # Plot an image
+    # plt.imshow(training_images.__getitem__(0)[0][0][:, :, 0])
     # plt.show()
 
 # =============================================================================
