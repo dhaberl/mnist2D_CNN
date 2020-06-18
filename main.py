@@ -173,7 +173,7 @@ def create_2DCNN_model(input_shape):
 def main():
 
     # Data directory
-    data_dir = "C:\\Users\\david.haberl\\PycharmProjects\\ProjectThesis2\\Data\\Mnist2D\\"
+    data_dir = "data/"
 
     # Define hyperparameters
     num_epochs = 5
