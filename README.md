@@ -1,4 +1,4 @@
-# Convolutional Neural Network in Keras/Tensorflow
+# 2D Convolutional Neural Network in Keras/Tensorflow
  Classification CNN for 2D MNIST data.
 
 ## Prerequisites
