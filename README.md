@@ -21,7 +21,7 @@ A subset of 42 000 grey-scale images of the original MNIST database was used. Ea
 
 The images are stored as npy-files. The dataset also contains a csv-file with the ID and the corresponding ground truth label.
 
-Download the dataset from: [LINK] 
+Download the dataset from: https://www.kaggle.com/c/digit-recognizer/data
 
 folder/
 - main.py
